@@ -2,8 +2,45 @@
 <html>
 	<head>
 		<title>Hello Sarah Merrill</title>
+
+		<link rel="stylesheet" type="text/css" href="css/main.css">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.3/backbone-min.js"></script>
+
+		<script type="text/template" id="aboutTemp">
+		  <div class="content">
+			  <h2>About Me</h2>
+			  <img src="images/IMG_0531.jpg" alt="picture of Sarah Merrill with cat">
+			  <div>
+			  	<p>Hello, my name is Sarah Merrill.</p>
+			  	<p>I am currently working towards my Web Design and Development degree and will be graduating in April 2016. Starting this last summer, I’ve been working at Pacific Northwest National Laboratory where I’m contributing to team efforts on several web development projects. </p>
+			  	<p>My cat, Twig, is my baby. I plan to work hard so that I can afford to spoil her with fancy cat treats. </p>
+			  </div>
+		  	</div>
+		</script>
+
+		<script type="text/template" id="assignmentsTemp">
+			<div class="content">
+			  <h2>Assignments</h2>
+			  <p>Coming soon!</p>
+		  	</div>
+		</script>
+
+		<script src="js/main.js"></script>
 	</head>
 	<body>
-	<p>Hello world!</p>
+		<header>
+			<h1>I'm Sarah Merrill</h1>
+			<nav>
+				<table>
+					<tr>
+						<td><a href="#about">About Me</a></td>
+						<td><a href="#assignments">Assignments</a></td>
+					</tr>
+				</table>
+			</nav>
+		</header>
 	</body>
 <html>
