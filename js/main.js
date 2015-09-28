@@ -20,7 +20,6 @@
   app.Router = Backbone.Router.extend({
 
     routes: {
-      'about': 'about',
       'assignments': 'assignments',
       '':'about'
     },
