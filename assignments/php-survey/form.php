@@ -1,12 +1,12 @@
 <?php
 session_start();
-
+/*
 if ($_SESSION["submitted"]==true)
 {
     header("Location: results.php");
     exit();
 }
-
+*/
 ?>
 
 <!DOCTYPE html>
@@ -14,10 +14,11 @@ if ($_SESSION["submitted"]==true)
 
     <head>
         <title>Sarah's Survey</title>
-        <link rel="stylesheet" type="text/css" href="../stylesheet.css">
+        <link rel="stylesheet" type="text/css" href="../../css/stylesheet.css">
 
     </head>
-<body>
+<body id="survey">
+    <h1>PHP Survey</h1>
 
     <form action="session.php" method="post">
         <label>Name:</label> <input type="text" name="name"><br><br>

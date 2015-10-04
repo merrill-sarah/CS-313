@@ -2,12 +2,21 @@
 session_start();
 
 $data = json_decode(file_get_contents('data.json'), true);
+
+
 ?>
 <!DOCTYPE html>
 <html>
-	<h1>Results</h1>
+	<head>
+		<title>Survey Results</title>
+		<link rel="stylesheet" type="text/css" href="../../css/stylesheet.css">
+	</head>
+<body id="results">
+	<h1>Survey Results</h1>
+
+	<div>
 	<?php 
-		if ($_SESSION["name"] != null)
+		if ($_SESSION["submitted"] != null)
 		{
 			echo "<label>Name: </label>" . $_SESSION["name"]."<br>";
 		}
@@ -16,10 +25,8 @@ $data = json_decode(file_get_contents('data.json'), true);
 	<?php 
 		echo count($data["name"]);
 	?>
-	<br><br>
 
 	<h2>Harry Potter House</h2>
-	<label>Your choice: </label><?php echo$_SESSION["hpHouse"]?><br>
 	<label>Results: </label>
 	<?php
 		$l = count($data["hpHouse"]);
@@ -40,20 +47,41 @@ $data = json_decode(file_get_contents('data.json'), true);
 					$sCount = $sCount + 1;
 					break;
 			}
-
-			echo "<ul>"
-				. "<li>Gryffindor: " . round((float)($gCount/$l) * 100 ) . '%</li>'
-				. "<li>Ravenclaw: " . round((float)($rCount/$l) * 100 ) . '%</li>'
-				. "<li>Hufflepuff: " . round((float)($hCount/$l) * 100 ) . '%</li>'
-				. "<li>Slytherin: " . round((float)($sCount/$l) * 100 ) . '%</li>'
-				. "</ul>";
 		}
 
+		$gPercent = round((float)($gCount/$l) * 100 );
+		$rPercent = round((float)($rCount/$l) * 100 );
+		$hPercent = round((float)($hCount/$l) * 100 );
+		$sPercent = round((float)($sCount/$l) * 100 );
+
+		$gDisplay = "<li>Gryffindor: ".$gPercent. "%</li>";
+		$rDisplay = "<li>Ravenclaw: ".$rPercent. "%</li>";
+		$hDisplay = "<li>Hufflepuff: ".$hPercent. "%</li>";
+		$sDisplay = "<li>Slytherin: ".$sPercent. "%</li>";
+
+		switch ($_SESSION["hpHouse"]) 
+		{
+			case "Gryffindor":
+				$gDisplay = "<li><b>Gryffindor: </b>".$gPercent. "%</li>";
+				break;
+			case "Ravenclaw":
+				$rDisplay = "<li><b>Ravenclaw: </b>".$rPercent. "%</li>";
+				break;
+			case "Hufflepuff":
+				$hDisplay = "<li><b>Hufflepuff: </b>".$hPercent. "%</li>";
+				break;
+			case "Slytherin":
+				$sDisplay = "<li><b>Slytherin: </b>".$sPercent. "%</li>";
+				break;
+		}
+		
+		echo "<ul>"
+				.$gDisplay.$rDisplay.$hDisplay.$sDisplay
+			. "</ul>";
+
 	?>
-	<br><br>
 
 	<h2>Cats or Dogs</h2>
-	<label>Your choice: </label><?php echo $_SESSION["animal"]?><br>
 	<label>Results: </label>
 	<?php
 		$l = count($data["animal"]);
@@ -68,18 +96,37 @@ $data = json_decode(file_get_contents('data.json'), true);
 					$dCount = $dCount + 1;
 					break;
 			}
-
-			echo "<ul>"
-				. "<li>Cats: " . round((float)($cCount/$l) * 100 ) . '%</li>'
-				. "<li>Dogs: " . round((float)($dCount/$l) * 100 ) . '%</li>'
-				. "</ul>";
 		}
 
+		$cPercent = round((float)($cCount/$l) * 100 );
+		$dPercent = round((float)($dCount/$l) * 100 );
+
+		$cDisplay = "<li>Cats: ".$cPercent. "%</li>";
+		$dDisplay = "<li>Dogs: ".$dPercent. "%</li>";
+
+		switch ($_SESSION["animal"]) 
+		{
+			case "Cats":
+				$cDisplay = "<li><b>Cats: </b>".$cPercent. "%</li>";
+				break;
+			case "Dogs":
+				$dDisplay = "<li><b>Dogs: </b>".$dPercent. "%</li>";
+				break;
+		}
+		
+		echo "<ul>"
+				.$cDisplay.$dDisplay
+			. "</ul>";
+
 	?>
-	<br><br>
 
 	<h2>Spice Level</h2>
-	<label>Your choice: </label><?php echo $_SESSION["spice"]?><br>	
+	<?php 
+		if ($_SESSION["submitted"] != null)
+		{
+			echo "<label>Your choice: </label>".$_SESSION["spice"]."<br>";
+		}
+	?>	
 	<label>Results: </label>
 	<?php
 		$l = count($data["spice"]);
@@ -118,22 +165,69 @@ $data = json_decode(file_get_contents('data.json'), true);
 					$tenCount = $tenCount + 1;
 					break;
 			}
-
-			echo "<ul>"
-				. "<li>1: " . round((float)($oneCount/$l) * 100 ) . '%</li>'
-				. "<li>2: " . round((float)($twoCount/$l) * 100 ) . '%</li>'
-				. "<li>3: " . round((float)($threeCount/$l) * 100 ) . '%</li>'
-				. "<li>4: " . round((float)($fourCount/$l) * 100 ) . '%</li>'
-				. "<li>5: " . round((float)($fiveCount/$l) * 100 ) . '%</li>'
-				. "<li>6: " . round((float)($sixCount/$l) * 100 ) . '%</li>'
-				. "<li>7: " . round((float)($sevenCount/$l) * 100 ) . '%</li>'
-				. "<li>8: " . round((float)($eightCount/$l) * 100 ) . '%</li>'
-				. "<li>9: " . round((float)($nineCount/$l) * 100 ) . '%</li>'
-				. "<li>10: " . round((float)($tenCount/$l) * 100 ) . '%</li>'
-				. "</ul>";
 		}
 
-	?>
-	<br><br>
+		$onePercent = round((float)($oneCount/$l) * 100 );
+		$twoPercent = round((float)($twoCount/$l) * 100 );
+		$threePercent = round((float)($threeCount/$l) * 100 );
+		$fourPercent = round((float)($fourCount/$l) * 100 );
+		$fivePercent = round((float)($fiveCount/$l) * 100 );
+		$sixPercent = round((float)($sixCount/$l) * 100 );
+		$sevenPercent = round((float)($sevenCount/$l) * 100 );
+		$eightPercent = round((float)($eightCount/$l) * 100 );
+		$ninePercent = round((float)($nineCount/$l) * 100 );
+		$tenPercent = round((float)($tenCount/$l) * 100 );
 
+		$oneDisplay = "<li>1: " . $onePercent . '%</li>';
+		$twoDisplay = "<li>2: " . $twoPercent . '%</li>';
+		$threeDisplay = "<li>3: " . $threePercent . '%</li>';
+		$fourDisplay = "<li>4: " . $fourPercent . '%</li>';
+		$fiveDisplay = "<li>5: " . $fivePercent . '%</li>';
+		$sixDisplay = "<li>6: " . $sixPercent . '%</li>';
+		$sevenDisplay = "<li>7: " . $sevenPercent . '%</li>';
+		$eightDisplay = "<li>8: " . $eightPercent . '%</li>';
+		$nineDisplay = "<li>9: " . $ninePercent . '%</li>';
+		$tenDisplay = "<li>10: " . $tenPercent . '%</li>';
+
+		switch ($_SESSION["spice"])
+			{
+				case 1:
+					$oneDisplay = "<li><b>1: </b>" . $onePercent . '%</li>';
+					break;
+				case 2:
+					$twoDisplay = "<li><b>2: </b>" . $twoPercent . '%</li>';
+					break;
+				case 3:
+					$threeDisplay = "<li><b>3: </b>" . $threePercent . '%</li>';
+					break;
+				case 4:
+					$fourDisplay = "<li><b>4: </b>" . $fourPercent . '%</li>';
+					break;
+				case 5:
+					$fiveDisplay = "<li><b>5: </b>" . $fivePercent . '%</li>';
+					break;
+				case 6:
+					$sixDisplay = "<li><b>6: </b>" . $sixPercent . '%</li>';
+					break;
+				case 7:
+					$sevenDisplay = "<li><b>7: </b>" . $sevenPercent . '%</li>';
+					break;
+				case 8:
+					$eightDisplay = "<li><b>8: </b>" . $eightPercent . '%</li>';
+					break;
+				case 9:
+					$nineDisplay = "<li><b>9: </b>" . $ninePercent . '%</li>';
+					break;
+				case 10:
+					$tenDisplay = "<li><b>10: </b>" . $tenPercent . '%</li>';
+					break;
+			}
+
+		echo "<ul>"
+			. $oneDisplay.$twoDisplay.$threeDisplay.$fourDisplay.$fiveDisplay.$sixDisplay.$sevenDisplay.$eightDisplay.$nineDisplay.$tenDisplay
+			. "</ul>";
+
+	?>
+	</div>
+</body>
 </html>
