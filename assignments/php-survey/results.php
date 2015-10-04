@@ -42,10 +42,10 @@ $data = json_decode(file_get_contents('data.json'), true);
 			}
 
 			echo "<ul>"
-				. "<li>Gryffindor: " . round((float)($gcount/$l) * 100 ) . '%</li>'
-				. "<li>Ravenclaw: " . round((float)($rcount/$l) * 100 ) . '%</li>'
-				. "<li>Hufflepuff: " . round((float)($hcount/$l) * 100 ) . '%</li>'
-				. "<li>Slytherin: " . round((float)($scount/$l) * 100 ) . '%</li>'
+				. "<li>Gryffindor: " . round((float)($gCount/$l) * 100 ) . '%</li>'
+				. "<li>Ravenclaw: " . round((float)($rCount/$l) * 100 ) . '%</li>'
+				. "<li>Hufflepuff: " . round((float)($hCount/$l) * 100 ) . '%</li>'
+				. "<li>Slytherin: " . round((float)($sCount/$l) * 100 ) . '%</li>'
 				. "</ul>";
 		}
 
