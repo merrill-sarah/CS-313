@@ -1,12 +1,11 @@
 <?php
 session_start();
-/*
+
 if ($_SESSION["submitted"]==true)
 {
     header("Location: results.php");
     exit();
 }
-*/
 ?>
 
 <!DOCTYPE html>
