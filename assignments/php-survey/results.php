@@ -121,12 +121,6 @@ $data = json_decode(file_get_contents('data.json'), true);
 	?>
 
 	<h2>Spice Level</h2>
-	<?php 
-		if ($_SESSION["submitted"] != null)
-		{
-			echo "<label>Your choice: </label>".$_SESSION["spice"]."<br>";
-		}
-	?>	
 	<label>Results: </label>
 	<?php
 		$l = count($data["spice"]);
