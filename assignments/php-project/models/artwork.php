@@ -16,7 +16,8 @@ function display($dspl){
 
 
 	foreach ($items as $item){
-		$display = $display . "<div class='item'><a href='?action=item&amp;id=".$item[item_id] . "'>".$item[title]."</a></div>";
+		$display = $display . "<div class='item'><a href='?action=item&amp;id=".$item[item_id] . "'>"
+							. $item[title]."</a><img src='files/" . $item[image] . "-t.jpg' alt='" . $item[image] . "'></div>";
 	}
 
 	$display = $display . "</div>";

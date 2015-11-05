@@ -28,7 +28,7 @@ function itemDisplay($id){
 function itemView($item){
 	$display = "<div id='main'>"
 				. "<h2>" . $item[title] . "</h2>"
-				. "<img scr='" . $item[image] . "' alt='" . $item[image] . "'>"
+				. "<img src='files/" . $item[image] . ".jpg' alt='" . $item[image] . "'>"
 				. "<p>" . $item[description] . "</p>"
 			  . "</div>";
 
